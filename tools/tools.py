@@ -48,12 +48,6 @@ def decode_bin(priv):
         wr.write(data)
 
 
-# def meta_outer(offsets):
-#     with open("meta_out.py", "w") as meta_write:
-#         output = "meta_data = " + str(offsets)
-#         meta_write.write(output)
-
-
 def meta_outer(meta):
     with open('meta.json', "w") as writer:
         json.dump(meta, writer)
