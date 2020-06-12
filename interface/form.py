@@ -5,9 +5,6 @@ import pyglet
 pyglet.font.add_file("interface/font/circula-medium.otf")
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
-# password_true = "12345"
-# error_count = 5
-
 
 def main(password_true, error_count):
     password_status = False
@@ -62,4 +59,3 @@ def main(password_true, error_count):
 
     root.mainloop()
     return password_status
-
