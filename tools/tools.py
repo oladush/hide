@@ -1,3 +1,5 @@
+"""This module contains the basic methods for working with files"""
+
 import os
 import aese
 import json
@@ -21,7 +23,21 @@ def concat_files(src_files, dest, pub_key):
         wef.write(data)
 
 
-def extract(file_name, dest_name, offset, size, block_size=1024):
+def smart_extract(name, meta):
+    path = ""
+    for i in meta:
+        path_list = i[0].split("\\")[:-1]
+        for folder in path_list:
+            path += folder + "\\"
+        try:
+            extract(name, (i[0]), i[1], i[2])
+        except FileNotFoundError:
+            os.makedirs(path)
+            extract(name, (i[0]), i[1], i[2])
+        path = ""
+
+
+def extract(file_name, dest_name, offset, size, block_size=4096):
     with open(file_name, 'rb') as file:
          file.seek(offset)
          with open(dest_name, 'wb') as dest:
@@ -44,7 +60,7 @@ def decode_bin(priv):
     with open("file.bin", "rb") as red:
         cdata = red.read()
         data = aese.decode_run(cdata, priv)
-    with open("file.bin", "wb") as wr:
+    with open("file_decode.bin", "wb") as wr:
         wr.write(data)
 
 
@@ -57,4 +73,3 @@ def meta_decode():
     with open("meta.json", "r") as reader:
         return_data = json.load(reader)
     return return_data
-
