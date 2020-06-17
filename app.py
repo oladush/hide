@@ -1,8 +1,8 @@
 import os
 import shutil
-from hide import parameters
-from hide.tools import aese, tools
-from hide.interface import form
+import parameters
+from tools import aese, tools
+from interface import form
 
 # time test
 import datetime
