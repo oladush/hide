@@ -4,14 +4,6 @@ import os
 import rsa
 import pyaes
 
-pub = b""
-priv = b""
-session_key = ""
-
-def accept_key(public_key, private_key):
-    global pub, priv
-    pub, priv = public_key, private_key
-
 
 def rsa_crypt(data, pub_key):
     pub_key = rsa.PublicKey.load_pkcs1(pub_key)
@@ -36,7 +28,6 @@ def aes_decrypt(crypt, key):
 
 
 def encode_run(data, pub_key):
-    global session_key
     session_key = os.urandom(32)
     crypt = aes_crypt(data, session_key)
     crypt_key = rsa_crypt(session_key, pub_key)
