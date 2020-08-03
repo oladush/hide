@@ -14,17 +14,17 @@ priv_key = parameters.private_key
 password = parameters.password
 error_count = parameters.error_count
 
-hidden_directory = parameters.dir_for_encryption
+dir_for_encryption = parameters.dir_for_encryption
 
 
 def hide():
-    offsets = list(tools.concat_files(tools.list_files(hidden_directory), 'file.bin', pub_key))
+    offsets = list(tools.concat_files(tools.list_files(dir_for_encryption), 'file.bin', pub_key))
     tools.meta_outer(offsets)
-    shutil.rmtree(parameters.dir_for_encryption, ignore_errors=True)
+    shutil.rmtree(dir_for_encryption, ignore_errors=True)
 
 
 def repay():
-    os.mkdir(parameters.dir_for_encryption)
+    os.mkdir(dir_for_encryption)
     tools.decode_bin(priv_key)
     meta = tools.meta_decode()
     tools.smart_extract("file_decode.bin", meta)
