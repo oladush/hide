@@ -15,7 +15,6 @@ def concat_files(src_files, dest, pub_key):
             new_offset = dest.tell()
             yield filename, offset, new_offset - offset
             offset = new_offset
-    #не нужно так делать.Переписать срочно!
     with open("file.bin", "rb") as ref:
         data = ref.read()
         data = aese.encode_run(data, pub_key)
@@ -56,7 +55,6 @@ def list_files(dir):
 
 
 def decode_bin(priv):
-    # стереть с лица земли
     with open("file.bin", "rb") as red:
         cdata = red.read()
         data = aese.decode_run(cdata, priv)
