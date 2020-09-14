@@ -59,8 +59,6 @@ class PasswordWindow():
 
     root = tkinter.Tk()
 
-    # внешний вид
-
     font_color = "white"
     font_error_color = "red"
     principal_font = "circula-medium "
